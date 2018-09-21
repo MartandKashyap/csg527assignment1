@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>CS G527 Assignment 1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+	<div class="container">
+		<div class="starter-template">
+			<h1>CS G527 Cloud Computing Assignment 1</h1>
+			
+			<h2>User Input</h2>
+			<form action="#" th:action="@{/}" method="post"
+				th:object=${userInput} target="_blank">
+				<div class="col-lg-3">
+					<select class="form-control" id="servicemodel" name="servicemodel"
+						th:field="*{serviceType}" onchange="showHideDModels()">
+						<option value="">Select Service Model</option>
+						<option th:each="serviceModel : ${serviceModels}"
+							th:value="${serviceModel}" th:text="${serviceModel}"></option>
+					</select>
+				</div>
+				<div class="col-lg-3">
+					<select class="form-control" name="deploymentmodel"
+						id="deploymentmodel" th:field="*{deploymentType}">
+						<option value="">Select Deployment Model</option>
+						<option th:each="deploymentModel : ${deploymentModels}"
+							th:value="${deploymentModel}"
+							th:text="${deploymentModel} + ' ' + Cloud"></option>
+					</select>
+				</div>
+				<button class="btn btn-default" type="submit">Submit</button>
+			</form>
+		</div>
+
+	</div>
+	<!-- /.container -->
+
+	<script>
+		function showHideDModels() {
+			var y = document.getElementById("servicemodel").value;
+			var x = document.getElementById("deploymentmodel");
+			//x.value = "Select Deployment Model";
+			if (y === "Saas") {
+				x.disabled = false;
+			} else {
+				x.disabled = true;
+			}
+		}
+	</script>
+	<script type="text/javascript"
+		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
