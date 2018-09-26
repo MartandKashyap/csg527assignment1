@@ -55,7 +55,7 @@ public class MainController {
 	public String welcome(Map<String, Object> model, UserInput userInput) {
 		model.put("serviceModels", this.serviceModels);
 		model.put("deploymentModels", this.deploymentModels);
-		return "index";
+		return "app";
 	}
 
 	@PostMapping("/app")
@@ -72,6 +72,6 @@ public class MainController {
 		if(userInput.getServiceType().equalsIgnoreCase("iaas")) {
 			return "redirect:"+openStack;
 		}
-		return "redirect:/app";
+		return "redirect:app";
 	}
 }
