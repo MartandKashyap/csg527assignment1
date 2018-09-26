@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.mecs.csg527assignment1.model.UserInput;
 
 @Controller
-public class IndexController {
+public class MainController {
 	// inject via application.properties
 	@Value("${links.mediafire}")
 	private String mediafire;
@@ -40,15 +40,25 @@ public class IndexController {
 		deploymentModels.add("Public");
 		deploymentModels.add("Private");
 	}
+	
+	@GetMapping({"/", "/home"})
+	public String home() {
+		return "home";
+	}
 
-	@GetMapping("/")
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+	@GetMapping("/app")
 	public String welcome(Map<String, Object> model, UserInput userInput) {
 		model.put("serviceModels", this.serviceModels);
 		model.put("deploymentModels", this.deploymentModels);
 		return "index";
 	}
 
-	@PostMapping("/")
+	@PostMapping("/app")
 	public String handleUserInputs(Map<String, Object> model, @Valid UserInput userInput, BindingResult bindingResult) {
 		if(userInput.getServiceType().equalsIgnoreCase("saas")&&userInput.getDeploymentType().equalsIgnoreCase("public")) {
 			return "redirect:"+mediafire;
@@ -62,6 +72,6 @@ public class IndexController {
 		if(userInput.getServiceType().equalsIgnoreCase("iaas")) {
 			return "redirect:"+openStack;
 		}
-		return "redirect:/";
+		return "redirect:/app";
 	}
 }
