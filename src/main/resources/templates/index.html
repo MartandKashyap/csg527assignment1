@@ -17,7 +17,7 @@
 			
 			<h2>User Input</h2>
 			<form action="#" th:action="@{/}" method="post"
-				th:object=${userInput} target="_blank">
+				th:object="${userInput}" target="_blank">
 				<div class="col-lg-3">
 					<select class="form-control" id="servicemodel" name="servicemodel"
 						th:field="*{serviceType}" onchange="showHideDModels()">

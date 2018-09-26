@@ -39,10 +39,6 @@ public class IndexController {
 
 		deploymentModels.add("Public");
 		deploymentModels.add("Private");
-		
-//		mediafire = "";
-		/*deploymentModels.add("Community");
-		deploymentModels.add("Hybrid");*/
 	}
 
 	@GetMapping("/")
@@ -55,24 +51,16 @@ public class IndexController {
 	@PostMapping("/")
 	public String handleUserInputs(Map<String, Object> model, @Valid UserInput userInput, BindingResult bindingResult) {
 		if(userInput.getServiceType().equalsIgnoreCase("saas")&&userInput.getDeploymentType().equalsIgnoreCase("public")) {
-//			model.put("link", mediafire);
 			return "redirect:"+mediafire;
-//			return "loading";
 		}
 		if(userInput.getServiceType().equalsIgnoreCase("saas")&&userInput.getDeploymentType().equalsIgnoreCase("private")) {
 			return "redirect:"+googleDrive;
-//			model.put("link", mediafire);
-//			return "loading";
 		}
 		if(userInput.getServiceType().equalsIgnoreCase("paas")) {
 			return "redirect:"+heroku;
-//			model.put("link", mediafire);
-//			return "loading";
 		}
 		if(userInput.getServiceType().equalsIgnoreCase("iaas")) {
 			return "redirect:"+openStack;
-//			model.put("link", mediafire);
-//			return "loading";
 		}
 		return "redirect:/";
 	}
