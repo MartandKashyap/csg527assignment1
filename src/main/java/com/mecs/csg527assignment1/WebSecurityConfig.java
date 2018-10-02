@@ -28,16 +28,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 	
-    @Bean
+    @SuppressWarnings("deprecation")
+	@Bean
     @Override
     public UserDetailsService userDetailsService() {
-        UserDetails user =
-             User.withDefaultPasswordEncoder()
-                .username("kashyapmartand@gmail.com")
-                .password("password")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user);
+        UserDetails user1 = User.withDefaultPasswordEncoder().username("h20181030100@hyderabad.bits-pilani.ac.in").password("password").roles("USER").build();
+        UserDetails user2 = User.withDefaultPasswordEncoder().username("h20181030090@hyderabad.bits-pilani.ac.in").password("password").roles("USER").build();
+        UserDetails user3 = User.withDefaultPasswordEncoder().username("h20181030107@hyderabad.bits-pilani.ac.in").password("password").roles("USER").build();
+        return new InMemoryUserDetailsManager(user1, user2, user3);
     }
 }
